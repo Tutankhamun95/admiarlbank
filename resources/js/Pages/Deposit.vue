@@ -16,12 +16,11 @@ const form = useForm({
 
 const submit = () => {
   form.post('/store', {
-    onSuccess: () => {
-      // handle success
-      console.log('Deposit successful!');
+    onSuccess: (response) => {
+      console.log(response);
+      alert('Deposit Successful');
     },
     onError: (errors) => {
-      // handle validation errors
       console.error(errors);
     },
   });
@@ -50,6 +49,7 @@ const submit = () => {
                 <div class="mb-4">
                   <label class="block text-gray-700">Amount</label>
                   <input v-model="form.amount" type="number" step="0.01" class="w-full px-4 py-2 border rounded-lg" />
+                  <div v-if="form.errors.amount" class="text-red-500 text-sm mt-1">{{ form.errors.amount }}</div>
                 </div>
                 <button type="submit" class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-700">
                   Deposit

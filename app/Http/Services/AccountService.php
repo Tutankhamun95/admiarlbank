@@ -75,13 +75,17 @@ class AccountService
     {
         $account = $this->getUserAccount();
 
-        if ($account) {
-            $account->balance += $depositRequest->validated()['amount'];
+        if (!$account) {
+            return redirect()->back()->with('error', 'Account not found.');
+        }
+        
+        try {
+            $account->balance += $depositRequest->amount;
             $account->save();
 
             return redirect()->back()->with('success', 'Deposit successful!');
-        } else {
-            return redirect()->back()->with('error', 'Account not found!');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Something went wrong.');
         }
     }
 

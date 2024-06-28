@@ -22,16 +22,16 @@ class DepositRequest extends FormRequest
     public function rules()
     {
         return [
-            'amount' => 'required|integer|min:10.00',
+            'amount' => 'required|numeric|min:10.00',
         ];
     }
 
     public function messages()
     {
         return [
-            'amount.required' => 'Are you really sending nothing??',
-            'amount.integer' => 'Only numbers little shit.',
-            'amount.min' => 'Send more money u broke ass'
+            'amount.required' => 'The amount field is required.',
+            'amount.numeric' => 'The amount must be a number.',
+            'amount.min' => 'The amount must be at least $10.00.',
         ];
     }
 }

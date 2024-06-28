@@ -62,6 +62,8 @@ const submit = () => {
                 <div class="mb-4">
                   <label class="block text-gray-700">To</label>
                   <input v-model="form.toAccount" type="text" class="w-full px-4 py-2 border rounded-lg" />
+                  <div v-if="form.errors.amount" class="text-red-500 text-sm mt-1">{{ form.errors.amount }}</div>
+                  <div v-if="form.errors.toAccount" class="text-red-500 text-sm mt-1">{{ form.errors.toAccount }}</div>
                 </div>
                 <button type="submit" class="w-full bg-green-500 text-white py-2 rounded-lg hover:bg-green-700">
                   Send
